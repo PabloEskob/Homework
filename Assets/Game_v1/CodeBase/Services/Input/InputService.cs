@@ -1,6 +1,6 @@
 ﻿namespace Game_v1.CodeBase.Services.Input
 {
-    public sealed class InputService: IInputService
+    public sealed class InputService : IInputService
     {
         public GameInput GameInput { get; }
 

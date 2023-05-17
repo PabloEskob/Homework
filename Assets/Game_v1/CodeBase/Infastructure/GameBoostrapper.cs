@@ -4,11 +4,11 @@ namespace Game_v1.CodeBase.Infastructure
 {
     public class GameBoostrapper : MonoBehaviour
     {
-        private Game _game;
+        private Bootstrap _bootstrap;
 
         private void Awake()
         {
-            _game = new Game();
+            _bootstrap = new Bootstrap();
             DontDestroyOnLoad(this);
         }
     }

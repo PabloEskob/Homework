@@ -12,10 +12,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game_v1.CodeBase.Services.OtherServices;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public partial class @GameInput : IInputActionCollection2, IDisposable
+public partial class @GameInput : IInputActionCollection2, IDisposable,IService
 {
     public InputActionAsset asset { get; }
     public @GameInput()

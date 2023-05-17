@@ -1,6 +1,6 @@
-﻿using Game_v1.CodeBase.Infastructure;
-using Game_v1.CodeBase.Player.Components;
+﻿using Game_v1.CodeBase.Player.Components;
 using Game_v1.CodeBase.Services.Input;
+using Game_v1.CodeBase.Services.OtherServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,7 +14,7 @@ namespace Game_v1.CodeBase.Controllers
 
         private void Awake()
         {
-            _inputService = Game.InputService;
+            _inputService = AllServices.Container.Single<IInputService>();
         }
 
         private void OnEnable()
