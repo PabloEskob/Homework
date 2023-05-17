@@ -1,6 +1,8 @@
-﻿namespace Game_v1.CodeBase.Services.Input
+﻿using Game_v1.CodeBase.Services.OtherServices;
+
+namespace Game_v1.CodeBase.Services.Input
 {
-    public interface IInputService
+    public interface IInputService : IService
     {
         GameInput GameInput { get; }
     }
