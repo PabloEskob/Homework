@@ -12,7 +12,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Game_v1.CodeBase.Services.OtherServices;
+using Game_v1.CodeBase.Services.ServiceLocator;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 

@@ -1,14 +1,14 @@
-﻿using Game_v1.CodeBase.Player.Components;
+﻿using Game_v1.CodeBase.Logic;
 using Game_v1.CodeBase.Services.Input;
-using Game_v1.CodeBase.Services.OtherServices;
+using Game_v1.CodeBase.Services.ServiceLocator;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Game_v1.CodeBase.Controllers
 {
-    public sealed class MoveController : MonoBehaviour
+    public sealed class PlayerMoveController : MonoBehaviour
     {
-        [SerializeField] private PlayerMove _playerMove;
+        [SerializeField] private Movement _playerMove;
 
         private IInputService _inputService;
 
