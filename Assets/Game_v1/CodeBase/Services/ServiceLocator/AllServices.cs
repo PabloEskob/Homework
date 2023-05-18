@@ -1,4 +1,4 @@
-﻿namespace Game_v1.CodeBase.Services.OtherServices
+﻿namespace Game_v1.CodeBase.Services.ServiceLocator
 {
     public class AllServices
     {

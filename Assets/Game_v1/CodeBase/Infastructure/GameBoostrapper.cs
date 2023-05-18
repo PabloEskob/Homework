@@ -1,14 +1,17 @@
-﻿using UnityEngine;
+﻿using Game_v1.CodeBase.Infastructure.State;
+using Game_v1.CodeBase.Services.ServiceLocator;
+using UnityEngine;
 
 namespace Game_v1.CodeBase.Infastructure
 {
-    public class GameBoostrapper : MonoBehaviour
+    public sealed class GameBoostrapper : MonoBehaviour
     {
-        private Bootstrap _bootstrap;
+        private GameStateMachine _gameStateMachine;
 
         private void Awake()
         {
-            _bootstrap = new Bootstrap();
+            _gameStateMachine = new GameStateMachine(AllServices.Container);
+            _gameStateMachine.Enter<BootstrapState>();
             DontDestroyOnLoad(this);
         }
     }

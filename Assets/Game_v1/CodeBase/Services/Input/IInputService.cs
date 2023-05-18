@@ -1,4 +1,4 @@
-﻿using Game_v1.CodeBase.Services.OtherServices;
+﻿using Game_v1.CodeBase.Services.ServiceLocator;
 
 namespace Game_v1.CodeBase.Services.Input
 {
