@@ -2,7 +2,7 @@
 using Game_v1.CodeBase.System;
 using UnityEngine;
 
-namespace Game_v1.CodeBase.Player.Components
+namespace Game_v1.CodeBase.Controllers
 {
     public sealed class DestructionController : MonoBehaviour
     {
