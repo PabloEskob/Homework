@@ -6,7 +6,7 @@ namespace Game_v1.CodeBase.Enemy.Components
 {
     public class EnemyDeathComponent : MonoBehaviour, IDestruction
     {
-        [SerializeField] private EnemyMove _parent;
+        [SerializeField] private EnemyMoveController _parent;
 
         public void Die()
         {

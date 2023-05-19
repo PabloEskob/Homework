@@ -1,5 +1,4 @@
 ﻿using Game_v1.CodeBase.Factory;
-using Game_v1.CodeBase.Services.ServiceLocator;
 using UnityEngine;
 
 namespace Game_v1.CodeBase.Infastructure.State
@@ -9,7 +8,7 @@ namespace Game_v1.CodeBase.Infastructure.State
         private const string InitialPointTag = "InitialPoint";
 
         private readonly GameStateMachine _gameStateMachine;
-        private IGameFactory _gameFactory;
+        private readonly IGameFactory _gameFactory;
 
         public LoadLevelState(GameStateMachine gameStateMachine, IGameFactory gameFactory)
         {

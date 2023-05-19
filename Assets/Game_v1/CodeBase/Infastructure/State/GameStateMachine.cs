@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Game_v1.CodeBase.Factory;
+using Game_v1.CodeBase.Services;
 using Game_v1.CodeBase.Services.ServiceLocator;
 
 namespace Game_v1.CodeBase.Infastructure.State
@@ -15,8 +16,8 @@ namespace Game_v1.CodeBase.Infastructure.State
             _states = new Dictionary<Type, IState>()
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, services),
-                [typeof(LoadLevelState)] = new LoadLevelState(this,services.Single<IGameFactory>()),
-                [typeof(GameLoopState)] = new GameLoopState()
+                [typeof(LoadLevelState)] = new LoadLevelState(this, services.Single<IGameFactory>()),
+                [typeof(GameLoopState)] = new GameLoopState(this,services.Single<IGameStateManagement>())
             };
         }
 
