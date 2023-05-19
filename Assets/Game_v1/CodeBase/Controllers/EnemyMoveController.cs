@@ -14,21 +14,19 @@ namespace Game_v1.CodeBase.Controllers
     {
         [SerializeField] private Movement _movement;
 
-        private void OnEnable()
-        {
-            AllServices.Container.Single<IGameStateManagement>().Register(this);
-        }
+        private IGameStateManagement _gameStateManagement;
 
-        private void OnDisable()
+        private void Awake()
         {
-            AllServices.Container.Single<IGameStateManagement>().UnRegister(this);
+            _gameStateManagement = AllServices.Container.Single<IGameStateManagement>();
+            _gameStateManagement.Register(this);
         }
 
         private void FixedUpdate()
         {
             _movement.Move(Vector3.back);
         }
-
+        
         public void OnStartGame()
         {
             enabled = true;
@@ -36,7 +34,6 @@ namespace Game_v1.CodeBase.Controllers
 
         public void OnPauseGame()
         {
-            Debug.Log("!@!!");
             enabled = false;
         }
 

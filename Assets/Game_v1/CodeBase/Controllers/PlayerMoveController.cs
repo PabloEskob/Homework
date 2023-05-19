@@ -43,6 +43,7 @@ namespace Game_v1.CodeBase.Controllers
 
         public void OnPauseGame()
         {
+            
             _gameplayMovement.performed -= OnMoved;
         }
 
