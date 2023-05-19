@@ -8,6 +8,7 @@ TagManager:
   - EnemySpawner
   - Enemy
   - Obstacle
+  - UI
   layers:
   - Default
   - TransparentFX

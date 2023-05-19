@@ -2,8 +2,8 @@
 
 namespace Game_v1.CodeBase.UI.Elements
 {
-    public interface IWindowService: IService
+    public interface IButtonService : IService
     {
-        void StartGame();
+        void Use();
     }
 }

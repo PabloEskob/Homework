@@ -17,7 +17,8 @@ namespace Game_v1.CodeBase.Infastructure.State
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, services),
                 [typeof(LoadLevelState)] = new LoadLevelState(this, services.Single<IGameFactory>()),
-                [typeof(GameLoopState)] = new GameLoopState(this,services.Single<IGameStateManagement>())
+                [typeof(GameLoopState)] = new GameLoopState(this,services.Single<IGameStateManagement>(),
+                    services.Single<IGameFactory>()),
             };
         }
 

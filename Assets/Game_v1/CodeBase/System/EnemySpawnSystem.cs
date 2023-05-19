@@ -22,8 +22,8 @@ namespace Game_v1.CodeBase.System
 
         private void Awake()
         {
-            _enemyPool = new EnemyPool(transform);
             AllServices.Container.Single<IGameStateManagement>().Register(this);
+            _enemyPool = new EnemyPool(transform);
         }
         
         private void Spawn()

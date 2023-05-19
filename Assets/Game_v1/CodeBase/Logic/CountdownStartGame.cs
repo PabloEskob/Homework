@@ -6,18 +6,20 @@ using UnityEngine;
 
 namespace Game_v1.CodeBase.Logic
 {
-    public sealed class CountdownStartGame : MonoBehaviour, IWindowService
+    public sealed class CountdownStartGame : MonoBehaviour, IButtonService
     {
         [SerializeField] private int _countdownTime = 3;
         [SerializeField] private TextMeshProUGUI _countdownText;
-        [SerializeField] private StartGameButton _startGameButton;
+        [SerializeField] private StartButton _startButton;
+        
+        public event Action OnFinished;
 
         private void Awake()
         {
-            _startGameButton.Construct(this);
+            _startButton.Construct(this);
         }
 
-        public void StartGame()
+        public void Use()
         {
             StartCoroutine(CountdownCoroutine());
         }
@@ -37,6 +39,7 @@ namespace Game_v1.CodeBase.Logic
             _countdownText.text = "Go!";
             yield return new WaitForSeconds(1f);
 
+            OnFinished?.Invoke();
             _countdownText.gameObject.SetActive(false);
         }
     }

@@ -14,6 +14,7 @@ namespace Game_v1.CodeBase.Infastructure.State
         {
             _gameStateMachine = gameStateMachine;
             _gameFactory = gameFactory;
+            
         }
 
         public void Enter()
@@ -29,6 +30,7 @@ namespace Game_v1.CodeBase.Infastructure.State
         {
             var player = _gameFactory
                 .CreatePlayer(GameObject.FindWithTag(InitialPointTag).transform.position);
+            
             _gameStateMachine.Enter<GameLoopState>();
         }
     }
