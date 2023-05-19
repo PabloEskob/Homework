@@ -20,7 +20,7 @@ namespace Game_v1.CodeBase.Infastructure.State
 
         public void Enter()
         {
-            _gameStateMachine.Enter<LoadLevelState>();
+            _gameStateMachine.Enter<GameLoopState>();
         }
 
         public void Exit()
