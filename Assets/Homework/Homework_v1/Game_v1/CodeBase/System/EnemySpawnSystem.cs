@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Game_v1.CodeBase.Logic;
 using Game_v1.CodeBase.Services;
 using Game_v1.CodeBase.Services.ServiceLocator;
@@ -8,7 +9,7 @@ using Random = UnityEngine.Random;
 
 namespace Game_v1.CodeBase.System
 {
-    public class EnemySpawnSystem : MonoBehaviour,
+    public sealed class EnemySpawnSystem : MonoBehaviour,
         IGameFinishListener,
         IGamePauseListener,
         IGameResumeListener,
@@ -19,13 +20,15 @@ namespace Game_v1.CodeBase.System
 
         private EnemyPool _enemyPool;
         private Coroutine _coroutine;
+        private Action<IGameListener> _register;
 
         private void Awake()
         {
-            AllServices.Container.Single<IGameStateManagement>().Register(this);
+            _register = AllServices.Container.Single<IGameStateManagement>().Register;
+            _register(this);
             _enemyPool = new EnemyPool(transform);
         }
-        
+
         private void Spawn()
         {
             var random = Random.Range(0, _initialPoint.Length);
@@ -47,12 +50,18 @@ namespace Game_v1.CodeBase.System
 
         public void OnFinishGame()
         {
-            StopCoroutine(_coroutine);
+            if (_coroutine is not null)
+            {
+                StopCoroutine(_coroutine);
+            }
         }
 
         public void OnPauseGame()
         {
-           StopCoroutine(_coroutine);
+            if (_coroutine is not null)
+            {
+                StopCoroutine(_coroutine);
+            }
         }
 
         public void OnResumeGame()

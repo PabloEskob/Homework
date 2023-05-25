@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game_v1.CodeBase.Managers
 {
-    public class Entity : MonoBehaviour
+    public sealed class Entity : MonoBehaviour
     {
         [SerializeField] private MonoBehaviour[] _components;
 

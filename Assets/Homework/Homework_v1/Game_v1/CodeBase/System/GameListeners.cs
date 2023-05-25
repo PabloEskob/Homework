@@ -3,7 +3,7 @@
     public interface IGameListener
     {
     }
-
+    
     public interface IGameStartListener : IGameListener
     {
         void OnStartGame();

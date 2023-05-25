@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Game_v1.CodeBase.Logic
 {
-    public class EnemyPool
+    public sealed class EnemyPool
     {
         private readonly Transform _container;
         private GameObject _prefab;

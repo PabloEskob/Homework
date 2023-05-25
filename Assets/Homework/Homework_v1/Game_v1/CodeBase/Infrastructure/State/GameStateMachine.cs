@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Game_v1.CodeBase.Factory;
-using Game_v1.CodeBase.Services;
 using Game_v1.CodeBase.Services.ServiceLocator;
 
-namespace Game_v1.CodeBase.Infastructure.State
+namespace Homework.Homework_v1.Game_v1.CodeBase.Infrastructure.State
 {
     public sealed class GameStateMachine
     {
@@ -16,7 +15,7 @@ namespace Game_v1.CodeBase.Infastructure.State
             _states = new Dictionary<Type, IState>()
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, services),
-                [typeof(GameLoopState)] = new GameLoopState(this,services.Single<IGameStateManagement>(),
+                [typeof(GameLoadState)] = new GameLoadState(this,
                     services.Single<IGameFactory>()),
             };
         }

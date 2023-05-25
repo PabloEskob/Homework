@@ -7,16 +7,21 @@ namespace Game_v1.CodeBase.UI.Elements
     {
         [SerializeField] private Button _button;
 
-        protected IButtonService buttonService;
+        protected IButtonService ButtonService;
 
-        private void Awake()
+        private void OnEnable()
         {
             _button.onClick.AddListener(Use);
         }
 
+        private void OnDisable()
+        {
+            _button.onClick.RemoveListener(Use);
+        }
+
         public void Construct(IButtonService button)
         {
-            buttonService = button;
+            ButtonService = button;
         }
 
         protected abstract void Use();

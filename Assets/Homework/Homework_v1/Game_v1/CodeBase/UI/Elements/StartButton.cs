@@ -4,7 +4,7 @@
     {
         protected override void Use()
         {
-            buttonService.Use();
+            ButtonService.Use();
             gameObject.SetActive(false);
         }
     }

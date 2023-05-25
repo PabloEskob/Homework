@@ -1,29 +1,29 @@
-﻿using System;
-using Game_v1.CodeBase.Logic;
+﻿using Game_v1.CodeBase.Logic;
+using Game_v1.CodeBase.Managers;
+using Game_v1.CodeBase.Services.ServiceLocator;
 using Game_v1.CodeBase.UI.Elements;
 using UnityEngine;
 
 namespace Game_v1.CodeBase.UI
 {
-    public class Hud : MonoBehaviour, IButtonService
+    public sealed class Hud : MonoBehaviour, IButtonService
     {
         [SerializeField] private PauseButton _pauseButton;
         [SerializeField] private CountdownStartGame _countdownStartGame;
 
-        public event Action<bool> OnClick;
-        public event Action OnClosed;
+        private IGameManager _gameManager;
 
-        private bool _click;
+        private bool _pause;
 
 
         private void OnEnable()
         {
-            _countdownStartGame.OnFinished += OnFinish;
+            _countdownStartGame.Finished += OnFinish;
         }
 
         private void OnDisable()
         {
-            _countdownStartGame.OnFinished -= OnFinish;
+            _countdownStartGame.Finished -= OnFinish;
         }
 
         private void Awake()
@@ -31,16 +31,28 @@ namespace Game_v1.CodeBase.UI
             _pauseButton.Construct(this);
         }
 
+        private void Start()
+        {
+            _gameManager = AllServices.Container.Single<IGameManager>();
+        }
+
         public void Use()
         {
-            _click = _click != true;
-
-            OnClick?.Invoke(_click);
+            if (_pause == false)
+            {
+                _gameManager.PauseGame();
+                _pause = true;
+            }
+            else
+            {
+                _gameManager.ResumeGame();
+                _pause = false;
+            }
         }
 
         private void OnFinish()
         {
-            OnClosed?.Invoke();
+            _gameManager.StartGame();
         }
     }
 }

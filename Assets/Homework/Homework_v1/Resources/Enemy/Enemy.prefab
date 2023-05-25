@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collisionCheck: {fileID: 2464958250135627628}
+  _enemyDeathComponent: {fileID: 905476634340101843}
 --- !u!114 &9140123153358180212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,5 +395,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d2274eeb466433f8f109bd77d16f4ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tag: Obstacle
-  _entity: {fileID: 9140123153358180212}

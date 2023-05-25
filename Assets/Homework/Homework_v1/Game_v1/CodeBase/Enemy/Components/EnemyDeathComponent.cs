@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game_v1.CodeBase.Enemy.Components
 {
-    public class EnemyDeathComponent : MonoBehaviour, IDestruction
+    public class EnemyDeathComponent : MonoBehaviour
     {
         [SerializeField] private EnemyMoveController _parent;
 

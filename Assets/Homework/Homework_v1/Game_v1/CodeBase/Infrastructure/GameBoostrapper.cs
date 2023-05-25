@@ -1,8 +1,8 @@
-﻿using Game_v1.CodeBase.Infastructure.State;
-using Game_v1.CodeBase.Services.ServiceLocator;
+﻿using Game_v1.CodeBase.Services.ServiceLocator;
+using Homework.Homework_v1.Game_v1.CodeBase.Infrastructure.State;
 using UnityEngine;
 
-namespace Game_v1.CodeBase.Infastructure
+namespace Homework.Homework_v1.Game_v1.CodeBase.Infrastructure
 {
     public sealed class GameBoostrapper : MonoBehaviour
     {
@@ -12,7 +12,6 @@ namespace Game_v1.CodeBase.Infastructure
         {
             _gameStateMachine = new GameStateMachine(AllServices.Container);
             _gameStateMachine.Enter<BootstrapState>();
-            DontDestroyOnLoad(this);
         }
     }
 }

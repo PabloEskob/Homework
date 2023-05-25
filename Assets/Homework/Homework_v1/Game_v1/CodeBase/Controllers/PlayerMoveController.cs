@@ -1,4 +1,5 @@
-﻿using Game_v1.CodeBase.Logic;
+﻿using System;
+using Game_v1.CodeBase.Logic;
 using Game_v1.CodeBase.Services;
 using Game_v1.CodeBase.Services.Input;
 using Game_v1.CodeBase.Services.ServiceLocator;
@@ -18,12 +19,14 @@ namespace Game_v1.CodeBase.Controllers
 
         private IInputService _inputService;
         private InputAction _gameplayMovement;
+        private Action<IGameListener> _register;
 
         private void Awake()
         {
             _inputService = AllServices.Container.Single<IInputService>();
             _gameplayMovement = _inputService.GameInput.Gameplay.Movement;
-            AllServices.Container.Single<IGameStateManagement>().Register(this);
+            _register = AllServices.Container.Single<IGameStateManagement>().Register;
+            _register(this);
         }
 
         public void OnStartGame()

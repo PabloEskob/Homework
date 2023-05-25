@@ -1,6 +1,6 @@
 ﻿namespace Game_v1.CodeBase.Services.ServiceLocator
 {
-    public class AllServices
+    public sealed class AllServices
     {
         private static AllServices _instance;
         public static AllServices Container => _instance ??= new AllServices();

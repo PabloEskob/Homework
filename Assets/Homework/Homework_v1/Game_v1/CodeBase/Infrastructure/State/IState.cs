@@ -1,4 +1,4 @@
-﻿namespace Game_v1.CodeBase.Infastructure.State
+﻿namespace Homework.Homework_v1.Game_v1.CodeBase.Infrastructure.State
 {
     public interface IState
     {
