@@ -1,6 +1,7 @@
+using Homework.Homework_v2.Scripts.Common;
 using UnityEngine;
 
-namespace ShootEmUp
+namespace Homework.Homework_v2.Scripts.Bullets
 {
     [CreateAssetMenu(
         fileName = "BulletConfig",

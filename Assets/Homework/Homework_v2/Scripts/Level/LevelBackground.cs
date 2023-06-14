@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ShootEmUp
+namespace Homework.Homework_v2.Scripts.Level
 {
     public sealed class LevelBackground : MonoBehaviour
     {

@@ -1,4 +1,4 @@
-namespace ShootEmUp
+namespace Homework.Homework_v2.Scripts.Common
 {
     public enum PhysicsLayer
     {

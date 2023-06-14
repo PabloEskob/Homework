@@ -1,19 +1,22 @@
+using Homework.Homework_v2.Scripts.Character.Move;
 using UnityEngine;
 
-namespace ShootEmUp
+namespace Homework.Homework_v2.Scripts.Components
 {
-    public sealed class MoveComponent : MonoBehaviour
+    public sealed class MoveComponent : MonoBehaviour, IMove
     {
-        [SerializeField]
-        private new Rigidbody2D rigidbody2D;
+        [SerializeField] private Rigidbody2D _rigidbody2D;
+        [SerializeField] private float _speed = 5.0f;
 
-        [SerializeField]
-        private float speed = 5.0f;
-        
-        public void MoveByRigidbodyVelocity(Vector2 vector)
+        public void Move(Vector2 vector2)
         {
-            var nextPosition = this.rigidbody2D.position + vector * this.speed;
-            this.rigidbody2D.MovePosition(nextPosition);
+            var nextPosition = _rigidbody2D.position + vector2 * _speed;
+            _rigidbody2D.MovePosition(nextPosition);
+        }
+
+        public Vector2 GetPosition()
+        {
+            return gameObject.transform.position;
         }
     }
 }

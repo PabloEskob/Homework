@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace ShootEmUp
+namespace Homework.Homework_v2.Scripts.GameManager
 {
-    public sealed class GameManager : MonoBehaviour
+    public sealed class GameManager
     {
         public void FinishGame()
         {

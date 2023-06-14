@@ -1,15 +1,11 @@
 using UnityEngine;
 
-namespace ShootEmUp
+namespace Homework.Homework_v2.Scripts.Components
 {
     public sealed class TeamComponent : MonoBehaviour
     {
-        public bool IsPlayer
-        {
-            get { return this.isPlayer; }
-        }
-        
-        [SerializeField]
-        private bool isPlayer;
+        public bool IsPlayer => _isPlayer;
+
+        [SerializeField] private bool _isPlayer;
     }
 }

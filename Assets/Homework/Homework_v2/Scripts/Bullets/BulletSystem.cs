@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using Homework.Homework_v2.Scripts.Level;
 using UnityEngine;
 
-namespace ShootEmUp
+namespace Homework.Homework_v2.Scripts.Bullets
 {
     public sealed class BulletSystem : MonoBehaviour
     {
@@ -55,8 +56,8 @@ namespace ShootEmUp
             bullet.SetPosition(args.position);
             bullet.SetColor(args.color);
             bullet.SetPhysicsLayer(args.physicsLayer);
-            bullet.damage = args.damage;
-            bullet.isPlayer = args.isPlayer;
+            bullet.Damage = args.damage;
+            bullet.IsPlayer = args.isPlayer;
             bullet.SetVelocity(args.velocity);
             
             if (this.m_activeBullets.Add(bullet))
