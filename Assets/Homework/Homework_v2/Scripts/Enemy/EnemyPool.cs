@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using Homework.Homework_v2.Scripts.Common;
 using Homework.Homework_v2.Scripts.Components;
 using UnityEngine;
 using VContainer;
@@ -9,12 +9,12 @@ namespace Homework.Homework_v2.Scripts.Enemy
     public sealed class EnemyPool : MonoBehaviour
     {
         public Transform Container => _container;
-        
-        [Header("Pool")] 
-        [SerializeField] private Transform _container;
-        [SerializeField] private GameObject _prefab;
 
-        private readonly Queue<GameObject> _enemyPool = new();
+        [Header("Pool")] [SerializeField] private Transform _container;
+        [SerializeField] private GameObject _prefab;
+        [SerializeField] private int _count;
+
+        private ObjectPool<EnemyFireComponent> _enemyPool;
 
         private Func<EnemyFireComponent, Transform, EnemyFireComponent> _enemyFactory;
 
@@ -26,16 +26,18 @@ namespace Homework.Homework_v2.Scripts.Enemy
 
         private void Awake()
         {
-            for (var i = 0; i < 7; i++)
+            _enemyPool = new ObjectPool<EnemyFireComponent>();
+            
+            for (var i = 0; i < _count; i++)
             {
                 var enemy = _enemyFactory(_prefab.GetComponent<EnemyFireComponent>(), _container);
-                _enemyPool.Enqueue(enemy.gameObject);
+                _enemyPool.Add(enemy);
             }
         }
 
-        public Queue<GameObject> GetEnemyPool()
+        public EnemyFireComponent GetEnemy()
         {
-            return _enemyPool;
+            return _enemyPool.GetFreeElement();
         }
     }
 }

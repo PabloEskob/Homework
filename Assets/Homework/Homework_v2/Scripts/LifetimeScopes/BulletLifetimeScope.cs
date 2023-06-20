@@ -19,6 +19,7 @@ namespace Homework.Homework_v2.Scripts.LifetimeScopes
             builder.RegisterComponentInHierarchy<EnemyPool>();
             builder.RegisterComponentInHierarchy<EnemyManager>();
             builder.RegisterComponentInHierarchy<EnemySpawner>();
+            builder.RegisterComponentInHierarchy<BulletPool>();
 
             builder.RegisterFactory<EnemyFireComponent, Transform, EnemyFireComponent>(container =>
             {

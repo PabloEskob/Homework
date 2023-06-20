@@ -20,12 +20,12 @@ namespace Homework.Homework_v2.Scripts.Enemy
 
         public GameObject SpawnEnemy()
         {
-            if (!_enemyPool.GetEnemyPool().TryDequeue(out var enemy))
+            var enemy = _enemyPool.GetEnemy();
+
+            if (enemy==null)
             {
                 return null;
             }
-
-            enemy.transform.SetParent(_worldTransform);
 
             var spawnPosition = _enemyPositions.RandomSpawnPosition();
             enemy.transform.position = spawnPosition.position;
@@ -34,13 +34,13 @@ namespace Homework.Homework_v2.Scripts.Enemy
             enemy.GetComponent<EnemyMoveAgent>().SetDestination(attackPosition.position);
 
             enemy.GetComponent<EnemyAttackAgent>().SetTarget(_character);
-            return enemy;
+
+            return enemy.gameObject;
         }
 
         public void UnspawnEnemy(GameObject enemy)
         {
-            enemy.transform.SetParent(_enemyPool.Container);
-            _enemyPool.GetEnemyPool().Enqueue(enemy);
+            enemy.SetActive(false);
         }
     }
 }
