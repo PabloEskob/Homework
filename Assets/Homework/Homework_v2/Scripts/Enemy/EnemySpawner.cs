@@ -8,7 +8,6 @@ namespace Homework.Homework_v2.Scripts.Enemy
     {
         [SerializeField] private EnemyPositions _enemyPositions;
         [SerializeField] private GameObject _character;
-        [SerializeField] private Transform _worldTransform;
 
         private EnemyPool _enemyPool;
 

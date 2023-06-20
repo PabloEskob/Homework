@@ -8,8 +8,6 @@ namespace Homework.Homework_v2.Scripts.Enemy
 {
     public sealed class EnemyPool : MonoBehaviour
     {
-        public Transform Container => _container;
-
         [Header("Pool")] [SerializeField] private Transform _container;
         [SerializeField] private GameObject _prefab;
         [SerializeField] private int _count;
@@ -27,7 +25,7 @@ namespace Homework.Homework_v2.Scripts.Enemy
         private void Awake()
         {
             _enemyPool = new ObjectPool<EnemyFireComponent>();
-            
+
             for (var i = 0; i < _count; i++)
             {
                 var enemy = _enemyFactory(_prefab.GetComponent<EnemyFireComponent>(), _container);
