@@ -9,11 +9,14 @@ namespace Lessons.Architecture.PM.Buttons
     public sealed class LevelUpButton : MonoBehaviour
     {
         [SerializeField] private Button _button;
-        [Space] [SerializeField] private Image _buttonBackground;
+        [Space] 
+        [SerializeField] private Image _buttonBackground;
         [SerializeField] private Sprite _availableButtonSprite;
         [SerializeField] private Sprite _lockedButtonSprite;
-        [Space] [SerializeField] private TextMeshProUGUI _text;
-        [Space] [SerializeField] private State _state;
+        [Space] 
+        [SerializeField] private TextMeshProUGUI _text;
+        [Space]
+        [SerializeField] private State _state;
         
         public void AddListener(UnityAction action)
         {

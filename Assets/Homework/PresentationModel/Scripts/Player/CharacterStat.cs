@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Lessons.Architecture.PM
 {
-    public sealed class CharacterStat
+    public sealed class CharacterStat : MonoBehaviour
     {
-        public event Action<int> OnValueChanged; 
+        public event Action<int> OnValueChanged;
 
         [ShowInInspector, ReadOnly]
         public string Name { get; private set; }
@@ -19,6 +19,11 @@ namespace Lessons.Architecture.PM
         {
             this.Value = value;
             this.OnValueChanged?.Invoke(value);
+        }
+
+        public void SetName(string name = null)
+        {
+            Name = name;
         }
     }
 }
