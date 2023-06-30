@@ -21,9 +21,9 @@ namespace Lessons.Architecture.PM
             this.OnValueChanged?.Invoke(value);
         }
 
-        public void SetName(string name = null)
+        public void SetName(string nameStat = null)
         {
-            Name = name;
+            Name = nameStat;
         }
     }
 }

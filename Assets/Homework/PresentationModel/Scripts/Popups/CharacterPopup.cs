@@ -92,10 +92,10 @@ namespace Lessons.Architecture.PM.Popup
 
         private void AssignValuesCharacterInfo()
         {
-            /*for (int i = 0; i < _characterInfo.GetStats(); i++)
+            for (int i = 0; i < _stats.Count; i++)
             {
-                _stats[i].text = _characterInfo.GetValue(_stats[i].name);
-            }*/
+                _stats[i].text = _characterInfo.GetValue(_stats[i].transform.parent.name);
+            }
         }
 
         private void OnStateChangedUserInfo()

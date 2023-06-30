@@ -1,6 +1,7 @@
 ﻿using System;
 using Lessons.Architecture.PM;
 using Lessons.Architecture.PM.Popup;
+using CharacterInfo = Lessons.Architecture.PM.CharacterInfo;
 
 namespace Homework.PresentationModel.Scripts.PresentationModel
 {
@@ -17,12 +18,24 @@ namespace Homework.PresentationModel.Scripts.PresentationModel
 
         public string GetValue(string name)
         {
-            return _characterInfo.GetStat(name).Value.ToString();
+            var stats = GetStats();
+            
+            for (var i = 0; i < stats.Length; i++)
+            {
+                var characterStat = stats[i];
+                
+                if (characterStat.Name == name)
+                {
+                    return $"{name}: {_characterInfo.GetStat(name).Value}";
+                }
+            }
+
+            return $"{name}: 0";
         }
 
-        public int GetStats()
+        public CharacterStat[] GetStats()
         {
-            return _characterInfo.GetStats().Length;
+            return _characterInfo.GetStats();
         }
 
         public void Start()
@@ -40,12 +53,19 @@ namespace Homework.PresentationModel.Scripts.PresentationModel
         private void OnStatAdded(CharacterStat characterStat)
         {
             characterStat.SetName(characterStat.gameObject.name);
+            characterStat.OnValueChanged += OnValueChanged;
             OnStateChanged?.Invoke();
         }
 
         private void OnStatRemoved(CharacterStat characterStat)
         {
             characterStat.SetName();
+            characterStat.OnValueChanged -= OnValueChanged;
+            OnStateChanged?.Invoke();
+        }
+
+        private void OnValueChanged(int obj)
+        {
             OnStateChanged?.Invoke();
         }
     }
