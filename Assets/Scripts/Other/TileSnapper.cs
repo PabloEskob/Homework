@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Game.Development
+namespace Other
 {
     public static class TileSnapper
     {

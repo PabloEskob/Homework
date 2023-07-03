@@ -1,7 +1,7 @@
 #if UNITY_EDITOR
 using UnityEngine;
 
-namespace Game.Development
+namespace Other
 {
     [AddComponentMenu("Editor/Tile Snap (Editor)")]
     [DisallowMultipleComponent]

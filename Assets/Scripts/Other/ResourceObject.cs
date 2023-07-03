@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Homeworks.SaveLoad
+namespace Other
 {
     public sealed class ResourceObject : MonoBehaviour
     {

@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Game.Development
+namespace Other
 {
     [CustomEditor(typeof(TileSnap))]
     public sealed class TileSnapEditor : Editor

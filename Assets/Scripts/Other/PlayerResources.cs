@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Homeworks.SaveLoad
+namespace Other
 {
     public sealed class PlayerResources : MonoBehaviour
     {

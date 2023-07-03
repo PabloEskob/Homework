@@ -1,4 +1,4 @@
-namespace Homeworks.SaveLoad
+namespace Other
 {
     public enum ResourceType
     {

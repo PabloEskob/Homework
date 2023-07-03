@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: c6d72d820c1e52c47a2386b2c5234f41
+  m_SerializeEntries:
+  - m_GUID: ac0dddf552810454faa25b28ef2c4441
+    m_Address: Orc_shaman
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3b8c29b8ba27a9d4d9cee13690515339
+    m_Address: Orc_archer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 79620d6e292f9c34d9697a439b05f2c2
+    m_Address: WK_light_cavalry
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2e1a0664b7cc12f4cac73c4998f44327
+    m_Address: WK_heavy_infantry_B
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b0fa63e475a21724db157f9e81bc7fb5
+    m_Address: WK_light_archer_B
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0c84fdaf11b2623479d391f3277b26aa
+    m_Address: Orc_Catapult
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f4a5a32d5be889d4bb9ddea84cd5cde0, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 65c395ee53544814f9a189cd44bdddda, type: 2}
+    - {fileID: 11400000, guid: 156eb6378b3b851479be5cbc63df6333, type: 2}
