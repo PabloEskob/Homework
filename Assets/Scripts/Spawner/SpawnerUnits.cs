@@ -1,5 +1,4 @@
-﻿using System;
-using Factory;
+﻿using Factory;
 using Sirenix.OdinInspector;
 using Units;
 using UnityEngine;
