@@ -1,36 +1,37 @@
-﻿using System.Collections.Generic;
-using Data;
+﻿using Data;
 using PersistentProgress;
 using SaveLoad;
+using Units;
 using UnityEngine;
-using VContainer;
 
 namespace Infrastructure
 {
     public class SaveLoadService : ISaveLoadService
     {
-        private readonly IObjectResolver _objectResolver;
         private readonly IPersistentProgressService _progressService;
+        private readonly UnitSaveLoadManager _unitSaveLoadManager;
 
-        public SaveLoadService(IObjectResolver objectResolver,IPersistentProgressService progressService)
+        public SaveLoadService(IPersistentProgressService progressService, UnitSaveLoadManager unitSaveLoadManager)
         {
-            _objectResolver = objectResolver;
             _progressService = progressService;
+            _unitSaveLoadManager = unitSaveLoadManager;
         }
 
         public void SaveProgress()
         {
-            foreach (ISaveProgress saveProgress in _objectResolver.Resolve<IEnumerable<ISaveProgress>>())
+            foreach (ISaveLoadProgress saveProgress in _unitSaveLoadManager.SaveLoad)
             {
-                Debug.Log(saveProgress);
                 saveProgress.UpdateProgress(_progressService.WorldProgress);
-                PlayerPrefs.SetString("Progress",_progressService.WorldProgress.ToJson());
+                PlayerPrefs.SetString("Progress", _progressService.WorldProgress.ToJson());
+                PlayerPrefs.Save();
+                Debug.Log("save!");
             }
         }
 
         public WorldProgress LoadProgress()
         {
             WorldProgress toDeserialized = PlayerPrefs.GetString("Progress")?.ToDeserialized<WorldProgress>();
+            Debug.Log(toDeserialized.WorldData.Position.Z);
             return toDeserialized;
         }
     }

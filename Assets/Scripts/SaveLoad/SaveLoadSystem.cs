@@ -6,11 +6,13 @@ using VContainer;
 public class SaveLoadSystem : MonoBehaviour
 {
     private ISaveLoadService _saveLoadService;
+    private LoadLevel _loadLevel;
     
     [Inject]
-    private void Construct(ISaveLoadService saveLoadService)
+    private void Construct(ISaveLoadService saveLoadService,LoadLevel loadLevel)
     {
         _saveLoadService = saveLoadService;
+        _loadLevel = loadLevel;
     }
 
     [Button]
@@ -22,6 +24,6 @@ public class SaveLoadSystem : MonoBehaviour
     [Button]
     public void Load()
     {
-        
+        _loadLevel.InformProgressReader();
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Other
 {
-    public sealed class UnitObject : MonoBehaviour, ISaveProgress
+    public sealed class UnitObject : MonoBehaviour, ISaveLoadProgress
     {
         [SerializeField] public int hitPoints;
 
@@ -15,13 +15,12 @@ namespace Other
         
         public void UpdateProgress(WorldProgress worldProgress)
         {
-            Debug.Log("a");
             worldProgress.WorldData.Position = transform.position.AsVectorData();
         }
 
         public void LoadProgress(WorldProgress worldProgress)
         {
-            Debug.Log("b");
+            Debug.Log("!");
             Vector3Data savedPosition = worldProgress.WorldData.Position;
 
             if (savedPosition != null)

@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using Data;
+﻿using Data;
 using Factory;
 using PersistentProgress;
 using SaveLoad;
-using VContainer;
+using Units;
 
 namespace Infrastructure
 {
@@ -12,30 +11,29 @@ namespace Infrastructure
         private readonly IGameFactory _gameFactory;
         private readonly IPersistentProgressService _progressService;
         private readonly ISaveLoadService _saveLoadService;
-        private readonly IObjectResolver _objectResolver;
-
-        public LoadLevel(IGameFactory gameFactory, IPersistentProgressService progressService,ISaveLoadService saveLoadService,IObjectResolver objectResolver)
+        private readonly UnitSaveLoadManager _unitSaveLoadManager;
+        
+        public LoadLevel(IGameFactory gameFactory, IPersistentProgressService progressService,ISaveLoadService saveLoadService,UnitSaveLoadManager unitSaveLoadManager)
         {
             _gameFactory = gameFactory;
             _progressService = progressService;
             _saveLoadService = saveLoadService;
-            _objectResolver = objectResolver;
+            _unitSaveLoadManager = unitSaveLoadManager;
+            LoadProgressOrInitNew();
             _gameFactory.CleanUp();
+        }
+
+        public void InformProgressReader()
+        {
+            foreach (ISaveLoadProgress saveProgressReader in _unitSaveLoadManager.SaveLoad)
+            {
+                saveProgressReader.LoadProgress(_progressService.WorldProgress);
+            }
         }
 
         public void LoadProgressOrInitNew()
         {
             _progressService.WorldProgress = _saveLoadService.LoadProgress() ?? new WorldProgress();
         }
-
-        private void InformProgressReader()
-        {
-            foreach (var saveProgressReader in _objectResolver.Resolve<IEnumerable<ISaveProgressReader>>())
-            {
-                saveProgressReader.LoadProgress(_progressService.WorldProgress);
-            }
-        }
-
-        
     }
 }
