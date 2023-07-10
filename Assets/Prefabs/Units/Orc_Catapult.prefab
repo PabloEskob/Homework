@@ -479,6 +479,7 @@ GameObject:
   - component: {fileID: 2104384961524282715}
   - component: {fileID: 2104384961531363963}
   - component: {fileID: 2104384961524159000}
+  - component: {fileID: -7286618969498344206}
   m_Layer: 0
   m_Name: Orc_Catapult
   m_TagString: Untagged
@@ -535,9 +536,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b30195530774198a17c549ed1b85bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 2
-  speed: 1
-  damage: 20
+  _hitPoints: 0
+  _speed: 0
+  _damage: 0
+  _uniqueId: {fileID: -7286618969498344206}
+--- !u!114 &-7286618969498344206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104384961524259833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f9a257d07c4d90bca9406941705b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 315d0b4e-1612-40c5-8d96-430797aefd84
 --- !u!1 &2104384961524262339
 GameObject:
   m_ObjectHideFlags: 0

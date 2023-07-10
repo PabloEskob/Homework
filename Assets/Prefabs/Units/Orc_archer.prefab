@@ -1911,6 +1911,7 @@ GameObject:
   - component: {fileID: 6185371161841008308}
   - component: {fileID: 6185371161848466186}
   - component: {fileID: 6185371161841181251}
+  - component: {fileID: -3814255087680524320}
   m_Layer: 0
   m_Name: Orc_archer
   m_TagString: Untagged
@@ -1989,9 +1990,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b30195530774198a17c549ed1b85bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 2
-  speed: 8
-  damage: 2
+  _hitPoints: 0
+  _speed: 0
+  _damage: 0
+  _uniqueId: {fileID: -3814255087680524320}
+--- !u!114 &-3814255087680524320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6185371161841320246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f9a257d07c4d90bca9406941705b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: e02ca9a6-f61d-4d6c-93d5-203b7b180bdc
 --- !u!1 &6185371161841321166
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,11 +6,11 @@ namespace Units
 {
     public class UnitSaveLoadManager
     {
-        public List<ISaveLoadProgress> SaveLoad { get; } = new();
-        
+        public List<ISaveLoadProgress> ListSaveLoad { get; } = new();
+
         public void Clear()
         {
-            SaveLoad.Clear();
+            ListSaveLoad.Clear();
         }
 
         public void RegisterProgressWatchers(GameObject createUnit)
@@ -23,12 +23,12 @@ namespace Units
 
         public void Remove(GameObject unit)
         {
-            SaveLoad.Remove(unit.GetComponentInChildren<ISaveLoadProgress>());
+            ListSaveLoad.Remove(unit.GetComponentInChildren<ISaveLoadProgress>());
         }
 
         private void Register(ISaveLoadProgress saveLoad)
         {
-            SaveLoad.Add(saveLoad);
+            ListSaveLoad.Add(saveLoad);
         }
     }
 }

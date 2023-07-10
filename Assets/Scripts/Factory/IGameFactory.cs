@@ -6,7 +6,7 @@ namespace Factory
 {
     public interface IGameFactory
     {
-        Task<GameObject> CreateUnit(UnitTypeId unitTypeId, Transform transform);
+        Task<GameObject> CreateUnit(UnitTypeId unitTypeId, Vector3 position,Quaternion rotation);
         void CleanUp();
     }
 }

@@ -1,13 +1,17 @@
 using Infrastructure;
+using SaveLoad;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using VContainer;
 
 public class SaveLoadSystem : MonoBehaviour
 {
+    [SerializeField]
+    private SavePaths _savePaths;
+    
     private ISaveLoadService _saveLoadService;
     private LoadLevel _loadLevel;
-    
+
     [Inject]
     private void Construct(ISaveLoadService saveLoadService,LoadLevel loadLevel)
     {
@@ -15,12 +19,18 @@ public class SaveLoadSystem : MonoBehaviour
         _loadLevel = loadLevel;
     }
 
+    private void Start()
+    {
+        _loadLevel.Load();
+        Load();
+    }
+
     [Button]
     public void Save()
     {
-        _saveLoadService.SaveProgress();
+        _saveLoadService.SaveProgress(_savePaths);
     }
-
+    
     [Button]
     public void Load()
     {

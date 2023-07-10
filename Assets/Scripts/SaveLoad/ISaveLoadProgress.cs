@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Data;
+﻿using Data;
 
 namespace SaveLoad
 {

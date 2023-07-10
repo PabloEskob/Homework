@@ -1,15 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Data
 {
     [Serializable]
     public class WorldData
     {
-        public Vector3Data Position;
+        public List<SaveUnitData> SavedUnitData = new();
 
-        public WorldData()
+        public SaveUnitData FindById(string id)
         {
-            Position = new Vector3Data();
+            return SavedUnitData.FirstOrDefault(saveUnitData => saveUnitData.UniqueIdId == id);
+        }
+
+        public void AddToList(SaveUnitData saveUnitData)
+        {
+            if (SavedUnitData.Contains(saveUnitData))
+            {
+                SavedUnitData.Remove(saveUnitData);
+            }
+
+            SavedUnitData.Add(saveUnitData);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace AssetManagement
 
             return await handle.Task;
         }
-
+        
         public void CleanUp()
         {
             foreach (List<AsyncOperationHandle> resourcesHandles in _handles.Values)

@@ -22,7 +22,7 @@ namespace Spawner
         [Button]
         public void Spawn()
         {
-            _gameFactory.CreateUnit(_unit, _position);
+            _gameFactory.CreateUnit(_unit, _position.position,Quaternion.identity);
         }
     }
 }

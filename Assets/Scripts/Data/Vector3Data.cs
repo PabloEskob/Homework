@@ -8,6 +8,7 @@ namespace Data
         public float X;
         public float Y;
         public float Z;
+        public float W;
 
         public Vector3Data(float x, float y, float z)
         {

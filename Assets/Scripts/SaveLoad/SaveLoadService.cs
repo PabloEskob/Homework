@@ -1,4 +1,5 @@
-﻿using Data;
+﻿using System.IO;
+using Data;
 using PersistentProgress;
 using SaveLoad;
 using Units;
@@ -17,22 +18,28 @@ namespace Infrastructure
             _unitSaveLoadManager = unitSaveLoadManager;
         }
 
-        public void SaveProgress()
+        public void SaveProgress(SavePaths savePaths)
         {
-            foreach (ISaveLoadProgress saveProgress in _unitSaveLoadManager.SaveLoad)
+            string path = Path.Combine(Application.streamingAssetsPath, $"{savePaths.ToString()}.json");
+
+            foreach (ISaveLoadProgress saveProgress in _unitSaveLoadManager.ListSaveLoad)
             {
                 saveProgress.UpdateProgress(_progressService.WorldProgress);
-                PlayerPrefs.SetString("Progress", _progressService.WorldProgress.ToJson());
-                PlayerPrefs.Save();
-                Debug.Log("save!");
+                File.WriteAllText(path, _progressService.WorldProgress.ToJson());
             }
         }
 
-        public WorldProgress LoadProgress()
+        public WorldProgress LoadProgress(SavePaths savePaths)
         {
-            WorldProgress toDeserialized = PlayerPrefs.GetString("Progress")?.ToDeserialized<WorldProgress>();
-            Debug.Log(toDeserialized.WorldData.Position.Z);
-            return toDeserialized;
+            string path = Path.Combine(Application.streamingAssetsPath, $"{savePaths.ToString()}.json");
+
+            if (File.Exists(path))
+            {
+                WorldProgress toDeserialized = DataExtensions.ToDeserialized<WorldProgress>(path);
+                return toDeserialized;
+            }
+
+            return null;
         }
     }
 }
