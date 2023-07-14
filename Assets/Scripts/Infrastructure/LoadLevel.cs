@@ -13,31 +13,21 @@ namespace Infrastructure
         private readonly IGameFactory _gameFactory;
         private readonly IPersistentProgressService _progressService;
         private readonly ISaveLoadService _saveLoadService;
-        private readonly UnitSaveLoadManager _unitSaveLoadManager;
+        private SaveLoadManager _saveLoadManager;
 
         public LoadLevel(IGameFactory gameFactory, IPersistentProgressService progressService,
-            ISaveLoadService saveLoadService, UnitSaveLoadManager unitSaveLoadManager)
+            ISaveLoadService saveLoadService)
         {
             _gameFactory = gameFactory;
             _progressService = progressService;
             _saveLoadService = saveLoadService;
-            _unitSaveLoadManager = unitSaveLoadManager;
             _gameFactory.CleanUp();
             LoadProgressOrInitNew();
         }
-
+        
         public void InformProgressReader()
         {
-            foreach (ISaveLoadProgress saveProgressReader in _unitSaveLoadManager.ListSaveLoad)
-            {
-                saveProgressReader.LoadProgress(_progressService.WorldProgress);
-            }
-        }
-
-        public void LoadProgressOrInitNew()
-        {
-            _progressService.WorldProgress =
-                _saveLoadService.LoadProgress(SavePaths.InitialData) ?? new WorldProgress();
+            _saveLoadManager.Load(_progressService.WorldProgress);
         }
 
         public void CreateLoadedUnit()
@@ -54,6 +44,12 @@ namespace Infrastructure
                     unit.Id = saveUnitData.UniqueId;
                 }, TaskScheduler.FromCurrentSynchronizationContext());
             }
+        }
+
+        private void LoadProgressOrInitNew()
+        {
+            _progressService.WorldProgress =
+                _saveLoadService.LoadProgress(SavePaths.InitialData) ?? new WorldProgress();
         }
     }
 }

@@ -8,7 +8,6 @@ public class SaveLoadSystem : MonoBehaviour
 {
     [SerializeField]
     private SavePaths _savePaths;
-    
     private ISaveLoadService _saveLoadService;
     private LoadLevel _loadLevel;
 

@@ -1,16 +1,23 @@
 ﻿using Data;
+using Factory;
 using Other;
-using Units;
+using UnityEngine;
 
 namespace SaveLoad
 {
     public class SaveLoadUnitPosition: ISaveLoadProgress
     {
-        private UnitSaveLoadManager _unitSaveLoadManager;
+        private readonly IGameFactory _gameFactory;
+
+        public SaveLoadUnitPosition(IGameFactory gameFactory)
+        {
+            _gameFactory = gameFactory;
+        }
         
         public void UpdateProgress(WorldProgress worldProgress)
         {
-            foreach (UnitObject unit in _unitSaveLoadManager.UnitObjects)
+            Debug.Log("Save!");
+            foreach (UnitObject unit in _gameFactory.UnitObjects)
             {
                var saveUnitData = new SaveUnitData(unit.Id, unit.UnitTypeId)
                {
@@ -24,7 +31,8 @@ namespace SaveLoad
 
         public void LoadProgress(WorldProgress worldProgress)
         {
-            foreach (var unitObject in _unitSaveLoadManager.UnitObjects)
+            Debug.Log("Load");
+            foreach (var unitObject in _gameFactory.UnitObjects)
             {
                 SaveUnitData saveUnit = worldProgress.WorldData.FindById(unitObject.Id);
                 

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AssetManagement;
 using Other;
 using StaticData;
@@ -14,14 +15,13 @@ namespace Factory
 
         private readonly StaticDataService _staticDataService;
         private readonly IAssetProvider _assetProvider;
-        private readonly UnitSaveLoadManager _unitSaveLoadManager;
-        
-        public GameFactory(StaticDataService staticDataService, IAssetProvider assetProvider,
-            UnitSaveLoadManager unitSaveLoadManager)
+
+        public List<UnitObject> UnitObjects { get; set; } = new();
+
+        public GameFactory(StaticDataService staticDataService, IAssetProvider assetProvider)
         {
             _staticDataService = staticDataService;
             _assetProvider = assetProvider;
-            _unitSaveLoadManager = unitSaveLoadManager;
         }
 
         public async Task<UnitObject> CreateUnit(UnitTypeId unitTypeId, Vector3 position, Quaternion rotation)
@@ -30,13 +30,13 @@ namespace Factory
             UnitObject createdUnit = Object.Instantiate(downloadedUnit, position, rotation).GetComponent<UnitObject>();
             createdUnit.UnitTypeId = unitTypeId;
             createdUnit.transform.parent = GameObject.FindGameObjectWithTag(Units).transform;
-            _unitSaveLoadManager.RegisterProgressWatchers(createdUnit.gameObject);
+            UnitObjects.Add(createdUnit);
             return createdUnit;
         }
-        
+
         public void CleanUp()
         {
-            _unitSaveLoadManager.Clear();
+            UnitObjects.Clear();
             _assetProvider.CleanUp();
         }
 

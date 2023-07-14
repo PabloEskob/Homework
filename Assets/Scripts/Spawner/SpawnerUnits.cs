@@ -22,11 +22,15 @@ namespace Spawner
         }
 
         [Button]
-        public async Task Spawn()
+        public void Spawn()
         {
             Task<UnitObject> unitTask = _gameFactory.CreateUnit(_unit, _position.position, Quaternion.identity);
-            UnitObject unit = await unitTask;
-            unit.GenerateId();
+            
+            unitTask.ContinueWith(task =>
+            {
+                UnitObject unit = task.Result;
+                unit.GenerateId();
+            }, TaskScheduler.FromCurrentSynchronizationContext());
         }
     }
 }

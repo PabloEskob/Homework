@@ -3,9 +3,9 @@ using Data;
 using Factory;
 using Infrastructure;
 using PersistentProgress;
+using SaveLoad;
 using Spawner;
 using StaticData;
-using Units;
 using VContainer;
 using VContainer.Unity;
 
@@ -23,8 +23,9 @@ namespace Scopes
             builder.Register<WorldProgress>(Lifetime.Singleton);
             builder.RegisterComponentInHierarchy<SpawnerUnits>();
             builder.RegisterComponentInHierarchy<SaveLoadSystem>();
-            builder.Register<UnitSaveLoadManager>(Lifetime.Singleton);
             builder.Register<LoadLevel>(Lifetime.Singleton);
+            builder.Register<SaveLoadUnitPosition>(Lifetime.Singleton).As<ISaveLoadProgress>();
+            builder.Register<SaveLoadManager>(Lifetime.Singleton);
         }
     }
 }

@@ -2,7 +2,6 @@
 using Data;
 using PersistentProgress;
 using SaveLoad;
-using Units;
 using UnityEngine;
 
 namespace Infrastructure
@@ -10,23 +9,19 @@ namespace Infrastructure
     public class SaveLoadService : ISaveLoadService
     {
         private readonly IPersistentProgressService _progressService;
-        private readonly UnitSaveLoadManager _unitSaveLoadManager;
+        private readonly SaveLoadManager _saveLoadManager;
 
-        public SaveLoadService(IPersistentProgressService progressService, UnitSaveLoadManager unitSaveLoadManager)
+        public SaveLoadService(IPersistentProgressService progressService,SaveLoadManager saveLoadManager)
         {
             _progressService = progressService;
-            _unitSaveLoadManager = unitSaveLoadManager;
+            _saveLoadManager = saveLoadManager;
         }
-
+        
         public void SaveProgress(SavePaths savePaths)
         {
             string path = Path.Combine(Application.streamingAssetsPath, $"{savePaths.ToString()}.json");
-
-            foreach (ISaveLoadProgress saveProgress in _unitSaveLoadManager.ListSaveLoad)
-            {
-                saveProgress.UpdateProgress(_progressService.WorldProgress);
-                File.WriteAllText(path, _progressService.WorldProgress.ToJson());
-            }
+            _saveLoadManager.Save(_progressService.WorldProgress);
+            File.WriteAllText(path, _progressService.WorldProgress.ToJson());
         }
 
         public WorldProgress LoadProgress(SavePaths savePaths)

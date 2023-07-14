@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Other;
 using Units;
 using UnityEngine;
@@ -9,5 +10,6 @@ namespace Factory
     {
         Task<UnitObject> CreateUnit(UnitTypeId unitTypeId, Vector3 position, Quaternion rotation);
         void CleanUp();
+        List<UnitObject> UnitObjects { get; }
     }
 }
