@@ -1258,7 +1258,6 @@ GameObject:
   - component: {fileID: 3654881057353341156}
   - component: {fileID: 3654881057344283472}
   - component: {fileID: 3654881057353666781}
-  - component: {fileID: 8240560475491387795}
   m_Layer: 0
   m_Name: WK_light_archer_B
   m_TagString: Untagged
@@ -1340,20 +1339,7 @@ MonoBehaviour:
   _hitPoints: 0
   _speed: 0
   _damage: 0
-  _uniqueId: {fileID: 8240560475491387795}
---- !u!114 &8240560475491387795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3654881057353538798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41f9a257d07c4d90bca9406941705b80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Id: 054ad90f-8c79-4515-8397-1d1a16ed6337
+  Id: 
 --- !u!1 &3654881057353540536
 GameObject:
   m_ObjectHideFlags: 0

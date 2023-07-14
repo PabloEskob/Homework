@@ -21,7 +21,7 @@ public class SaveLoadSystem : MonoBehaviour
 
     private void Start()
     {
-        _loadLevel.Load();
+        _loadLevel.CreateLoadedUnit();
         Load();
     }
 

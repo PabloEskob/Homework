@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Other;
 using SaveLoad;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace Units
     public class UnitSaveLoadManager
     {
         public List<ISaveLoadProgress> ListSaveLoad { get; } = new();
+        public List<UnitObject> UnitObjects { get; } = new();
 
         public void Clear()
         {
@@ -18,6 +20,7 @@ namespace Units
             foreach (ISaveLoadProgress saveLoad in createUnit.GetComponentsInChildren<ISaveLoadProgress>())
             {
                 Register(saveLoad);
+                UnitObjects.Add(createUnit.GetComponent<UnitObject>());
             }
         }
 

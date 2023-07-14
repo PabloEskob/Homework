@@ -193,7 +193,6 @@ GameObject:
   - component: {fileID: 3898112536475430874}
   - component: {fileID: 3898112536482512698}
   - component: {fileID: 3898112536475282793}
-  - component: {fileID: 2464768517788074203}
   m_Layer: 0
   m_Name: WK_heavy_infantry_B
   m_TagString: Untagged
@@ -275,20 +274,7 @@ MonoBehaviour:
   _hitPoints: 0
   _speed: 0
   _damage: 0
-  _uniqueId: {fileID: 2464768517788074203}
---- !u!114 &2464768517788074203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3898112536475148998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41f9a257d07c4d90bca9406941705b80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Id: bb6849c3-4b0f-44ef-9e64-895706ec9dd3
+  Id: 
 --- !u!1 &3898112536475149362
 GameObject:
   m_ObjectHideFlags: 0

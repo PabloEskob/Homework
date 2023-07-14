@@ -1,3 +1,4 @@
+using System;
 using Data;
 using SaveLoad;
 using Units;
@@ -7,22 +8,23 @@ namespace Other
 {
     public sealed class UnitObject : MonoBehaviour, ISaveLoadProgress
     {
-        [SerializeField] public int _hitPoints;
-        [SerializeField] public int _speed;
-        [SerializeField] public int _damage;
+        [SerializeField] public int HitPoints;
+        [SerializeField] public int Speed;
+        [SerializeField] public int Damage;
+        [SerializeField] public string Id;
+
         public UnitTypeId UnitTypeId { get; set; }
 
-        private UniqueId _uniqueId;
         private SaveUnitData _saveUnitData;
 
         private void Start()
         {
-            _uniqueId = GetComponent<UniqueId>();
-            _saveUnitData = new SaveUnitData(_uniqueId.Id, UnitTypeId);
+            _saveUnitData = new SaveUnitData(Id, UnitTypeId);
         }
 
         public void UpdateProgress(WorldProgress worldProgress)
         {
+            _saveUnitData.UniqueId = Id;
             _saveUnitData.Position = transform.position.AsVectorData();
             _saveUnitData.Rotation = transform.rotation.AsQuaternionData();
             worldProgress.WorldData.AddToList(_saveUnitData);
@@ -30,10 +32,14 @@ namespace Other
 
         public void LoadProgress(WorldProgress worldProgress)
         {
-            SaveUnitData saveUnit = worldProgress.WorldData.FindById(_uniqueId.Id);
+            SaveUnitData saveUnit = worldProgress.WorldData.FindById(Id);
             transform.position = saveUnit.Position.AsUnityVector();
-            Debug.Log(saveUnit.Rotation.AsUnityQuaternion());
             transform.rotation = saveUnit.Rotation.AsUnityQuaternion();
+        }
+
+        public void GenerateId()
+        {
+            Id = $"{Guid.NewGuid().ToString()}_{DateTime.Now.Ticks}";
         }
     }
 }

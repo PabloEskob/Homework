@@ -6,14 +6,14 @@ namespace Data
     [Serializable]
     public class SaveUnitData
     {
-        public string UniqueIdId;
+        public string UniqueId;
         public Vector3Data Position;
         public int UnitTypeId;
         public QuaternionData Rotation;
 
-        public SaveUnitData(string uniqueIdId,UnitTypeId unitTypeId)
+        public SaveUnitData(string uniqueId, UnitTypeId unitTypeId)
         {
-            UniqueIdId = uniqueIdId;
+            UniqueId = uniqueId;
             UnitTypeId = (int)unitTypeId;
         }
     }

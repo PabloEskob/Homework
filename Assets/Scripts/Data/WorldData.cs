@@ -11,16 +11,12 @@ namespace Data
 
         public SaveUnitData FindById(string id)
         {
-            return SavedUnitData.FirstOrDefault(saveUnitData => saveUnitData.UniqueIdId == id);
+            return SavedUnitData.FirstOrDefault(saveUnitData => saveUnitData.UniqueId == id);
         }
 
         public void AddToList(SaveUnitData saveUnitData)
         {
-            if (SavedUnitData.Contains(saveUnitData))
-            {
-                SavedUnitData.Remove(saveUnitData);
-            }
-
+            SavedUnitData.RemoveAll(unitData => unitData.UniqueId == saveUnitData.UniqueId);
             SavedUnitData.Add(saveUnitData);
         }
     }

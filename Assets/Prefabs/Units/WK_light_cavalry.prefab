@@ -2272,7 +2272,6 @@ GameObject:
   - component: {fileID: 4967951713740836085}
   - component: {fileID: 4967951713731774065}
   - component: {fileID: 4967951713741289588}
-  - component: {fileID: 8426759878328184845}
   m_Layer: 0
   m_Name: WK_light_cavalry
   m_TagString: Untagged
@@ -2355,19 +2354,6 @@ MonoBehaviour:
   _hitPoints: 0
   _speed: 0
   _damage: 0
-  _uniqueId: {fileID: 8426759878328184845}
---- !u!114 &8426759878328184845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4967951713741148407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41f9a257d07c4d90bca9406941705b80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   Id: 
 --- !u!1 &4967951713741148667
 GameObject:

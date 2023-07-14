@@ -1,4 +1,6 @@
-﻿using Factory;
+﻿using System.Threading.Tasks;
+using Factory;
+using Other;
 using Sirenix.OdinInspector;
 using Units;
 using UnityEngine;
@@ -12,7 +14,7 @@ namespace Spawner
         [SerializeField] private Transform _position;
 
         private IGameFactory _gameFactory;
-        
+
         [Inject]
         private void Construct(IGameFactory gameFactory)
         {
@@ -20,9 +22,11 @@ namespace Spawner
         }
 
         [Button]
-        public void Spawn()
+        public async Task Spawn()
         {
-            _gameFactory.CreateUnit(_unit, _position.position,Quaternion.identity);
+            Task<UnitObject> unitTask = _gameFactory.CreateUnit(_unit, _position.position, Quaternion.identity);
+            UnitObject unit = await unitTask;
+            unit.GenerateId();
         }
     }
 }
