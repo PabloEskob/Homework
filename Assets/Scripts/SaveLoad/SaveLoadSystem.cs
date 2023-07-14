@@ -1,3 +1,4 @@
+using System;
 using Infrastructure;
 using SaveLoad;
 using Sirenix.OdinInspector;
@@ -18,12 +19,11 @@ public class SaveLoadSystem : MonoBehaviour
         _loadLevel = loadLevel;
     }
 
-    private void Start()
+    private void Awake()
     {
         _loadLevel.CreateLoadedUnit();
-        Load();
     }
-
+    
     [Button]
     public void Save()
     {

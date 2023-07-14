@@ -1,4 +1,5 @@
 using System;
+using Sirenix.OdinInspector;
 using Units;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace Other
         [SerializeField] public int HitPoints;
         [SerializeField] public int Speed;
         [SerializeField] public int Damage;
+        [ReadOnly]
         [SerializeField] public string Id;
 
         public UnitTypeId UnitTypeId { get; set; }

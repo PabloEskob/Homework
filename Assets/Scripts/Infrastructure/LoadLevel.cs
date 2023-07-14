@@ -5,6 +5,7 @@ using Other;
 using PersistentProgress;
 using SaveLoad;
 using Units;
+using UnityEngine;
 
 namespace Infrastructure
 {
@@ -13,14 +14,15 @@ namespace Infrastructure
         private readonly IGameFactory _gameFactory;
         private readonly IPersistentProgressService _progressService;
         private readonly ISaveLoadService _saveLoadService;
-        private SaveLoadManager _saveLoadManager;
+        private readonly SaveLoadManager _saveLoadManager;
 
         public LoadLevel(IGameFactory gameFactory, IPersistentProgressService progressService,
-            ISaveLoadService saveLoadService)
+            ISaveLoadService saveLoadService,SaveLoadManager saveLoadManager)
         {
             _gameFactory = gameFactory;
             _progressService = progressService;
             _saveLoadService = saveLoadService;
+            _saveLoadManager = saveLoadManager;
             _gameFactory.CleanUp();
             LoadProgressOrInitNew();
         }
@@ -42,6 +44,7 @@ namespace Infrastructure
                 {
                     UnitObject unit = task.Result;
                     unit.Id = saveUnitData.UniqueId;
+                    _saveLoadManager.Load(_progressService.WorldProgress);
                 }, TaskScheduler.FromCurrentSynchronizationContext());
             }
         }

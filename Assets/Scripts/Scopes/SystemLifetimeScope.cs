@@ -24,7 +24,7 @@ namespace Scopes
             builder.RegisterComponentInHierarchy<SpawnerUnits>();
             builder.RegisterComponentInHierarchy<SaveLoadSystem>();
             builder.Register<LoadLevel>(Lifetime.Singleton);
-            builder.Register<SaveLoadUnitPosition>(Lifetime.Singleton).As<ISaveLoadProgress>();
+            builder.Register<SaveLoadUnit>(Lifetime.Singleton).As<ISaveLoadProgress>();
             builder.Register<SaveLoadManager>(Lifetime.Singleton);
         }
     }

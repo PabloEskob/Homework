@@ -10,6 +10,9 @@ namespace Data
         public Vector3Data Position;
         public int UnitTypeId;
         public QuaternionData Rotation;
+        public int HitPoint;
+        public int Damage;
+        public int Speed;
 
         public SaveUnitData(string uniqueId, UnitTypeId unitTypeId)
         {
