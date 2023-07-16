@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f65756c321240a39f55ebf3712666d2, type: 3}
   m_Name: OrcArcher
   m_EditorClassIdentifier: 
-  _type: 0
-  _prefab:
+  Type: 0
+  Prefab:
     m_AssetGUID: 3b8c29b8ba27a9d4d9cee13690515339
     m_SubObjectName: 
     m_SubObjectType: 

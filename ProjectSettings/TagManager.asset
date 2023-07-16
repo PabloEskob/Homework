@@ -10,6 +10,7 @@ TagManager:
   - Obstacle
   - UI
   - Units
+  - Resources
   layers:
   - Default
   - TransparentFX

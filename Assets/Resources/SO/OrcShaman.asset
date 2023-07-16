@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f65756c321240a39f55ebf3712666d2, type: 3}
   m_Name: OrcShaman
   m_EditorClassIdentifier: 
-  _type: 2
-  _prefab:
+  Type: 2
+  Prefab:
     m_AssetGUID: ac0dddf552810454faa25b28ef2c4441
     m_SubObjectName: 
     m_SubObjectType: 

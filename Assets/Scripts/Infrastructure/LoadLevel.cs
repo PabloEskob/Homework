@@ -2,7 +2,7 @@
 using Data;
 using Factory;
 using Other;
-using PersistentProgress;
+using Repository;
 using SaveLoad;
 using Units;
 using UnityEngine;
@@ -11,48 +11,78 @@ namespace Infrastructure
 {
     public class LoadLevel
     {
-        private readonly IGameFactory _gameFactory;
-        private readonly IPersistentProgressService _progressService;
-        private readonly ISaveLoadService _saveLoadService;
+        private readonly UnitFactory _unitFactory;
+        private readonly ResourcesFactory _resourcesFactory;
         private readonly SaveLoadManager _saveLoadManager;
+        private readonly GameRepository _gameRepository;
+        private readonly SaveLoadUnit _saveLoadUnit;
+        private readonly SaveLoadResources _saveLoadResources;
 
-        public LoadLevel(IGameFactory gameFactory, IPersistentProgressService progressService,
-            ISaveLoadService saveLoadService,SaveLoadManager saveLoadManager)
+        public LoadLevel(UnitFactory unitFactory, GameRepository gameRepository,
+            SaveLoadManager saveLoadManager, SaveLoadUnit saveLoadUnit,SaveLoadResources saveLoadResources,ResourcesFactory resourcesFactory)
         {
-            _gameFactory = gameFactory;
-            _progressService = progressService;
-            _saveLoadService = saveLoadService;
+            _unitFactory = unitFactory;
             _saveLoadManager = saveLoadManager;
-            _gameFactory.CleanUp();
-            LoadProgressOrInitNew();
+            _gameRepository = gameRepository;
+            _saveLoadUnit = saveLoadUnit;
+            _saveLoadResources = saveLoadResources;
+            _resourcesFactory = resourcesFactory;
+            _unitFactory.CleanUp();
         }
-        
+
         public void InformProgressReader()
         {
-            _saveLoadManager.Load(_progressService.WorldProgress);
+            _saveLoadManager.Load();
+        }
+
+        public void Save()
+        {
+            _saveLoadManager.Save();
         }
 
         public void CreateLoadedUnit()
         {
-            foreach (SaveUnitData saveUnitData in _progressService.WorldProgress.WorldData.SavedUnitData)
+            _gameRepository.LoadState();
+            
+            UnitData unitData = _saveLoadUnit.GetProgress(_gameRepository);
+            
+            if (unitData!=null)
             {
-                Task<UnitObject> unitTask = _gameFactory.CreateUnit((UnitTypeId)saveUnitData.UnitTypeId,
-                    saveUnitData.Position.AsUnityVector(),
-                    saveUnitData.Rotation.AsUnityQuaternion());
-                
-                unitTask.ContinueWith(task =>
+                foreach (SaveUnitData saveUnitData in unitData.SaveDataList)
                 {
-                    UnitObject unit = task.Result;
-                    unit.Id = saveUnitData.UniqueId;
-                    _saveLoadManager.Load(_progressService.WorldProgress);
-                }, TaskScheduler.FromCurrentSynchronizationContext());
+                    Task<UnitObject> unitTask = _unitFactory.Create((UnitTypeId)saveUnitData.TypeId,
+                        saveUnitData.Position.AsUnityVector(),
+                        saveUnitData.Rotation.AsUnityQuaternion());
+
+                    unitTask.ContinueWith(task =>
+                    {
+                        UnitObject unit = task.Result;
+                        unit.Id = saveUnitData.Id;
+                        _saveLoadManager.Load();
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
+                }
             }
         }
-
-        private void LoadProgressOrInitNew()
+        public void CreateLoadResources()
         {
-            _progressService.WorldProgress =
-                _saveLoadService.LoadProgress(SavePaths.InitialData) ?? new WorldProgress();
+            ResourcesData resourcesData = _saveLoadResources.GetProgress(_gameRepository);
+
+            if (resourcesData!=null)
+            {
+                foreach (SaveResourcesData saveResources in resourcesData.SaveDataList)
+                {
+                    Task<ResourceObject> unitTask = _resourcesFactory.Create((ResourceType)saveResources.TypeId,
+                        saveResources.Position.AsUnityVector(),
+                        saveResources.Rotation.AsUnityQuaternion());
+
+                    unitTask.ContinueWith(task =>
+                    {
+                        ResourceObject unit = task.Result;
+                        unit.Id = saveResources.Id;
+                        _saveLoadManager.Load();
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
+                }
+            }
         }
     }
 }

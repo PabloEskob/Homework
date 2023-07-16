@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f65756c321240a39f55ebf3712666d2, type: 3}
   m_Name: WkHeavy
   m_EditorClassIdentifier: 
-  _type: 3
-  _prefab:
+  Type: 3
+  Prefab:
     m_AssetGUID: 2e1a0664b7cc12f4cac73c4998f44327
     m_SubObjectName: 
     m_SubObjectType: 

@@ -41,6 +41,14 @@ MonoBehaviour:
     m_Address: Orc_Catapult
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: c1f0d47dff2a84fd58804c08b41a6f61
+    m_Address: Stone
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a2fe665d3b93745ca9549a298dd28f01
+    m_Address: Tree
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f4a5a32d5be889d4bb9ddea84cd5cde0, type: 2}
   m_SchemaSet:

@@ -1,35 +1,30 @@
-using System;
 using Infrastructure;
-using SaveLoad;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using VContainer;
 
 public class SaveLoadSystem : MonoBehaviour
 {
-    [SerializeField]
-    private SavePaths _savePaths;
-    private ISaveLoadService _saveLoadService;
     private LoadLevel _loadLevel;
 
     [Inject]
-    private void Construct(ISaveLoadService saveLoadService,LoadLevel loadLevel)
+    private void Construct(LoadLevel loadLevel)
     {
-        _saveLoadService = saveLoadService;
         _loadLevel = loadLevel;
     }
 
     private void Awake()
     {
         _loadLevel.CreateLoadedUnit();
+        _loadLevel.CreateLoadResources();
     }
-    
+
     [Button]
     public void Save()
     {
-        _saveLoadService.SaveProgress(_savePaths);
+        _loadLevel.Save();
     }
-    
+
     [Button]
     public void Load()
     {

@@ -5,39 +5,43 @@ using UnityEngine;
 
 namespace SaveLoad
 {
-    public class SaveLoadUnit: ISaveLoadProgress
+    public class SaveLoadUnit : SaveLoader<UnitData, UnitFactory>
     {
-        private readonly IGameFactory _gameFactory;
+        private readonly UnitFactory _gameFactory;
 
-        public SaveLoadUnit(IGameFactory gameFactory)
+        public SaveLoadUnit(UnitFactory service) : base(service)
         {
-            _gameFactory = gameFactory;
+            _gameFactory = service;
         }
-        
-        public void UpdateProgress(WorldProgress worldProgress)
+
+        protected override UnitData ConvertToData(UnitFactory service)
         {
-            foreach (UnitObject unit in _gameFactory.UnitObjects)
+            UnitData unitData = new UnitData();
+
+            foreach (UnitObject unit in _gameFactory.ListData)
             {
-               var saveUnitData = new SaveUnitData(unit.Id, unit.UnitTypeId)
-               {
-                   HitPoint = unit.HitPoints,
-                   Speed = unit.Speed,
-                   Damage = unit.Damage,
-                   UniqueId = unit.Id,
-                   Position = unit.transform.position.AsVectorData(),
-                   Rotation = unit.transform.rotation.AsQuaternionData()
-               };
-               worldProgress.WorldData.AddToList(saveUnitData);
+                var saveUnitData = new SaveUnitData(unit.Id, unit.UnitTypeId)
+                {
+                    HitPoint = unit.HitPoints,
+                    Speed = unit.Speed,
+                    Damage = unit.Damage,
+                    Id = unit.Id,
+                    Position = unit.transform.position.AsVectorData(),
+                    Rotation = unit.transform.rotation.AsQuaternionData()
+                };
+                unitData.AddToList(saveUnitData);
             }
+
+            return unitData;
         }
 
-        public void LoadProgress(WorldProgress worldProgress)
+        protected override void SetupData(UnitFactory service, UnitData data)
         {
-            foreach (var unitObject in _gameFactory.UnitObjects)
+            foreach (var unitObject in _gameFactory.ListData)
             {
-                SaveUnitData saveUnit = worldProgress.WorldData.FindById(unitObject.Id);
-                
-                if (saveUnit!=null)
+                SaveUnitData saveUnit = data.FindById(unitObject.Id);
+
+                if (saveUnit != null)
                 {
                     unitObject.HitPoints = saveUnit.HitPoint;
                     unitObject.Speed = saveUnit.Speed;
@@ -46,6 +50,11 @@ namespace SaveLoad
                     unitObject.transform.rotation = saveUnit.Rotation.AsUnityQuaternion();
                 }
             }
+        }
+
+        protected override void SetupByDefault(UnitFactory service)
+        {
+            Debug.Log("No Data");
         }
     }
 }

@@ -1,3 +1,5 @@
+using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Other
@@ -9,5 +11,19 @@ namespace Other
         
         [SerializeField]
         public int remainingCount;
+        
+        [ReadOnly]
+        [SerializeField] public string Id;
+
+        public ResourceType ResourceType
+        {
+            get => resourceType;
+            set => resourceType = value;
+        }
+
+        public void GenerateId()
+        {
+            Id = $"{Guid.NewGuid().ToString()}_{DateTime.Now.Ticks}";
+        }
     }
 }

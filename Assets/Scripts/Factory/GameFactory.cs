@@ -1,50 +1,40 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AssetManagement;
-using Other;
 using StaticData;
-using Units;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Factory
 {
-    public class GameFactory : IGameFactory
+    public abstract class GameFactory<TData, TTypeId>
     {
-        private const string Units = "Units";
+        protected readonly StaticDataService StaticDataService;
+        protected readonly IAssetProvider AssetProvider;
+        public List<TData> ListData { get; set; } = new();
 
-        private readonly StaticDataService _staticDataService;
-        private readonly IAssetProvider _assetProvider;
-
-        public List<UnitObject> UnitObjects { get; set; } = new();
-
-        public GameFactory(StaticDataService staticDataService, IAssetProvider assetProvider)
+        protected GameFactory(StaticDataService staticDataService, IAssetProvider assetProvider)
         {
-            _staticDataService = staticDataService;
-            _assetProvider = assetProvider;
+            StaticDataService = staticDataService;
+            AssetProvider = assetProvider;
         }
 
-        public async Task<UnitObject> CreateUnit(UnitTypeId unitTypeId, Vector3 position, Quaternion rotation)
+        public async Task<TData> Create(TTypeId typeId, Vector3 position, Quaternion rotation)
         {
-            GameObject downloadedUnit = await LoadUnitFromAssetProvider(unitTypeId);
-            UnitObject createdUnit = Object.Instantiate(downloadedUnit, position, rotation).GetComponent<UnitObject>();
-            createdUnit.UnitTypeId = unitTypeId;
-            createdUnit.transform.parent = GameObject.FindGameObjectWithTag(Units).transform;
-            UnitObjects.Add(createdUnit);
+            GameObject downloadedUnit = await LoadUnitFromAssetProvider(typeId);
+            TData createdUnit = Object.Instantiate(downloadedUnit, position, rotation).GetComponent<TData>();
+            SetParent(createdUnit, typeId);
+            ListData.Add(createdUnit);
             return createdUnit;
         }
 
         public void CleanUp()
         {
-            UnitObjects.Clear();
-            _assetProvider.CleanUp();
+            ListData.Clear();
+            AssetProvider.CleanUp();
         }
 
-        private async Task<GameObject> LoadUnitFromAssetProvider(UnitTypeId unitTypeId)
-        {
-            UnitStaticData unit = _staticDataService.ForUnit(unitTypeId);
-            GameObject prefab = await _assetProvider.Load<GameObject>(unit._prefab);
-            return prefab;
-        }
+        protected abstract Task<GameObject> LoadUnitFromAssetProvider(TTypeId typeId);
+        
+        protected abstract void SetParent(TData createdUnit, TTypeId typeId);
     }
 }

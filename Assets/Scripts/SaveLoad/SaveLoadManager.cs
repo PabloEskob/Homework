@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Data;
+using Repository;
 using VContainer;
 
 namespace SaveLoad
@@ -8,25 +8,28 @@ namespace SaveLoad
     {
         private readonly IObjectResolver _objectResolver;
         private ISaveLoadProgress[] _saveLoadProgresses;
+        private readonly GameRepository _gameRepository;
 
-        public SaveLoadManager(IObjectResolver objectResolver)
+        public SaveLoadManager(IObjectResolver objectResolver,GameRepository gameRepository)
         {
             _objectResolver = objectResolver;
+            _gameRepository = gameRepository;
         }
 
-        public void Save(WorldProgress progressServiceWorldProgress)
+        public void Save()
         {
             foreach (var listener in _objectResolver.Resolve<IEnumerable<ISaveLoadProgress>>())
             {
-                listener.UpdateProgress(progressServiceWorldProgress);
+                listener.UpdateProgress(_gameRepository);
             }
+            _gameRepository.SaveState();
         }
 
-        public void Load(WorldProgress progressServiceWorldProgress)
+        public void Load()
         {
             foreach (var listener in _objectResolver.Resolve<IEnumerable<ISaveLoadProgress>>())
             {
-                listener.LoadProgress(progressServiceWorldProgress);
+                listener.LoadProgress(_gameRepository);
             }
         }
     }

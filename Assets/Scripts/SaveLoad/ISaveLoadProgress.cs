@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using Data;
+﻿using Repository;
 
 namespace SaveLoad
 {
     public interface ISaveLoadProgress
     {
-        void UpdateProgress(WorldProgress worldProgress);
-        void LoadProgress(WorldProgress worldProgress);
+        void UpdateProgress(IGameRepository gameRepository);
+        void LoadProgress(IGameRepository gameRepository);
     }
 }

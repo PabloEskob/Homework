@@ -4,11 +4,9 @@ using Units;
 namespace Data
 {
     [Serializable]
-    public class SaveUnitData
+    public class SaveUnitData: UniqueId
     {
-        public string UniqueId;
         public Vector3Data Position;
-        public int UnitTypeId;
         public QuaternionData Rotation;
         public int HitPoint;
         public int Damage;
@@ -16,8 +14,8 @@ namespace Data
 
         public SaveUnitData(string uniqueId, UnitTypeId unitTypeId)
         {
-            UniqueId = uniqueId;
-            UnitTypeId = (int)unitTypeId;
+            Id = uniqueId;
+            TypeId = (int)unitTypeId;
         }
     }
 }
