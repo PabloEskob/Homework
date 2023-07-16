@@ -26,7 +26,7 @@ namespace Repository
 
         public void LoadState()
         {
-            string path = Path.Combine(Application.streamingAssetsPath, "IntialData.json");
+            string path = Path.Combine(Application.streamingAssetsPath, "InitialData.json");
 
             if (File.Exists(path))
             {
@@ -41,7 +41,7 @@ namespace Repository
 
         public void SaveState()
         {
-            string path = Path.Combine(Application.streamingAssetsPath, "IntialData.json");
+            string path = Path.Combine(Application.streamingAssetsPath, "InitialData.json");
             string serializedState = JsonConvert.SerializeObject(_gameState);
             File.WriteAllText(path, serializedState);
         }

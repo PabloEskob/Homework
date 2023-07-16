@@ -5,7 +5,6 @@ using Other;
 using Repository;
 using SaveLoad;
 using Units;
-using UnityEngine;
 
 namespace Infrastructure
 {
@@ -40,7 +39,13 @@ namespace Infrastructure
             _saveLoadManager.Save();
         }
 
-        public void CreateLoadedUnit()
+        public void LoadAtStart()
+        {
+            CreateLoadUnit();
+            CreateLoadResources();
+        }
+
+        private void CreateLoadUnit()
         {
             _gameRepository.LoadState();
             
@@ -50,9 +55,7 @@ namespace Infrastructure
             {
                 foreach (SaveUnitData saveUnitData in unitData.SaveDataList)
                 {
-                    Task<UnitObject> unitTask = _unitFactory.Create((UnitTypeId)saveUnitData.TypeId,
-                        saveUnitData.Position.AsUnityVector(),
-                        saveUnitData.Rotation.AsUnityQuaternion());
+                    Task<UnitObject> unitTask = _unitFactory.Create((UnitTypeId)saveUnitData.TypeId);
 
                     unitTask.ContinueWith(task =>
                     {
@@ -63,7 +66,8 @@ namespace Infrastructure
                 }
             }
         }
-        public void CreateLoadResources()
+
+        private void CreateLoadResources()
         {
             ResourcesData resourcesData = _saveLoadResources.GetProgress(_gameRepository);
 
@@ -71,9 +75,8 @@ namespace Infrastructure
             {
                 foreach (SaveResourcesData saveResources in resourcesData.SaveDataList)
                 {
-                    Task<ResourceObject> unitTask = _resourcesFactory.Create((ResourceType)saveResources.TypeId,
-                        saveResources.Position.AsUnityVector(),
-                        saveResources.Rotation.AsUnityQuaternion());
+                    Task<ResourceObject> unitTask = _resourcesFactory.Create((ResourceType)saveResources.TypeId);
+                    
 
                     unitTask.ContinueWith(task =>
                     {

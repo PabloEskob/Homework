@@ -22,6 +22,7 @@ namespace SaveLoad
                 SaveResourcesData resourcesData = new SaveResourcesData(unit.Id, unit.ResourceType)
                 {
                     Id = unit.Id,
+                    Count = unit.remainingCount,
                     Position = unit.transform.position.AsVectorData(),
                     Rotation = unit.transform.rotation.AsQuaternionData()
                 };
@@ -39,6 +40,7 @@ namespace SaveLoad
 
                 if (saveUnit != null)
                 {
+                    unitObject.remainingCount = saveUnit.Count;
                     unitObject.transform.position = saveUnit.Position.AsUnityVector();
                     unitObject.transform.rotation = saveUnit.Rotation.AsUnityQuaternion();
                 }

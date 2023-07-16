@@ -15,8 +15,7 @@ public class SaveLoadSystem : MonoBehaviour
 
     private void Awake()
     {
-        _loadLevel.CreateLoadedUnit();
-        _loadLevel.CreateLoadResources();
+       _loadLevel.LoadAtStart();
     }
 
     [Button]

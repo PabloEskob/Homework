@@ -8,6 +8,7 @@ namespace Data
     {
         public Vector3Data Position;
         public QuaternionData Rotation;
+        public int Count;
 
         public SaveResourcesData(string uniqueId, ResourceType typeId)
         {

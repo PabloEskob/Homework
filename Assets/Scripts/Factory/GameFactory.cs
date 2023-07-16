@@ -18,10 +18,19 @@ namespace Factory
             AssetProvider = assetProvider;
         }
 
-        public async Task<TData> Create(TTypeId typeId, Vector3 position, Quaternion rotation)
+        public async Task<TData> Create(TTypeId typeId)
         {
             GameObject downloadedUnit = await LoadUnitFromAssetProvider(typeId);
-            TData createdUnit = Object.Instantiate(downloadedUnit, position, rotation).GetComponent<TData>();
+            TData createdUnit = Object.Instantiate(downloadedUnit).GetComponent<TData>();
+            SetParent(createdUnit, typeId);
+            ListData.Add(createdUnit);
+            return createdUnit;
+        }
+        
+        public async Task<TData> Create(TTypeId typeId,Vector3 position,Quaternion quaternion)
+        {
+            GameObject downloadedUnit = await LoadUnitFromAssetProvider(typeId);
+            TData createdUnit = Object.Instantiate(downloadedUnit,position,quaternion).GetComponent<TData>();
             SetParent(createdUnit, typeId);
             ListData.Add(createdUnit);
             return createdUnit;
