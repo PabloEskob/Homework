@@ -2270,7 +2270,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4967951713740836085}
-  - component: {fileID: 4967951713731774065}
   - component: {fileID: 4967951713741289588}
   m_Layer: 0
   m_Name: WK_light_cavalry
@@ -2319,26 +2318,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &4967951713731774065
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4967951713741148407}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 26b0b465439dcd84cb4971737ab4b8ca, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &4967951713741289588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2351,9 +2330,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b30195530774198a17c549ed1b85bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitPoints: 0
-  _speed: 0
-  _damage: 0
+  HitPoints: 0
+  Speed: 0
+  Damage: 0
   Id: 
 --- !u!1 &4967951713741148667
 GameObject:

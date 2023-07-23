@@ -8,6 +8,7 @@ namespace Repository
     public class GameRepository : IGameRepository
     {
         private Dictionary<string, string> _gameState;
+        string _password = "mySecretPassword";
 
         public string GetData(string key)
         {
@@ -31,7 +32,8 @@ namespace Repository
             if (File.Exists(path))
             {
                 string jsonContent = File.ReadAllText(path);
-                _gameState = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonContent);
+                string decryptedJsonContent = EncryptionUtility.Decrypt(jsonContent, _password);
+                _gameState = JsonConvert.DeserializeObject<Dictionary<string, string>>(decryptedJsonContent);
             }
             else
             {
@@ -41,9 +43,11 @@ namespace Repository
 
         public void SaveState()
         {
-            string path = Path.Combine(Application.streamingAssetsPath, "InitialData.json");
             string serializedState = JsonConvert.SerializeObject(_gameState);
-            File.WriteAllText(path, serializedState);
+            string encryptedState = EncryptionUtility.Encrypt(serializedState, _password);
+        
+            string path = Path.Combine(Application.streamingAssetsPath, "InitialData.json");
+            File.WriteAllText(path, encryptedState);
         }
     }
 }

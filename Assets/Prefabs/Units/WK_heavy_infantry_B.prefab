@@ -191,7 +191,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3898112536475430874}
-  - component: {fileID: 3898112536482512698}
   - component: {fileID: 3898112536475282793}
   m_Layer: 0
   m_Name: WK_heavy_infantry_B
@@ -239,26 +238,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &3898112536482512698
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3898112536475148998}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 635180035812f964db1d9529cbb170f2, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &3898112536475282793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,9 +250,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b30195530774198a17c549ed1b85bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitPoints: 0
-  _speed: 0
-  _damage: 0
+  HitPoints: 0
+  Speed: 0
+  Damage: 0
   Id: 
 --- !u!1 &3898112536475149362
 GameObject:
