@@ -15,7 +15,7 @@ namespace Homework.Scripts.Input
                 return new Vector3(readValue.x, 0, readValue.y);
             }
         }
-
+        
         public InputAction PressAttackButton
         {
             get

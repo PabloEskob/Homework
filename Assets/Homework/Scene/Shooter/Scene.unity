@@ -2975,7 +2975,7 @@ Transform:
   m_Children:
   - {fileID: 433075504}
   m_Father: {fileID: 1184381485}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1060751495
 GameObject:
@@ -3299,6 +3299,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1184381485}
+  - component: {fileID: 1184381487}
+  - component: {fileID: 1184381486}
   m_Layer: 0
   m_Name: '[Player]'
   m_TagString: Untagged
@@ -3318,11 +3320,61 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1854789370}
   - {fileID: 1004864504}
   m_Father: {fileID: 1366530279}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1184381486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184381484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a514baa308b348168d2f6c8bdfe9e1b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1184381487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184381484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22ea6cca32f0b8b46a55bfda79417f06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerModelCore:
+    Move:
+      TurnEngine:
+        SmoothRotationTime:
+          value: 8
+        TurnRequired:
+          value: 0
+        TurnDirection:
+          value: {x: 0, y: 0, z: 0}
+      MoveEngine:
+        Speed:
+          value: 5
+        MoveRequired:
+          value: 0
+        MoveDirection:
+          value: {x: 0, y: 0, z: 0}
+        _groundBounds: {fileID: 1185288761}
+      _characterController: {fileID: 695553862}
+    Life:
+      IsDeath:
+        value: 0
+      _healthPoints:
+        value: 0
+  PlayerModelView:
+    _animator: {fileID: 695553863}
+  PlayerModelComponents:
+    Entity: {fileID: 1184381486}
 --- !u!1 &1185288759
 GameObject:
   m_ObjectHideFlags: 0
@@ -3916,59 +3968,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1854789369
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1854789370}
-  - component: {fileID: 1854789371}
-  m_Layer: 0
-  m_Name: '[CORE]'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1854789370
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1854789369}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1184381485}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1854789371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1854789369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22ea6cca32f0b8b46a55bfda79417f06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerModelCore:
-    PlayerModelMove:
-      _speed:
-        value: 5
-      _characterController: {fileID: 695553862}
-      _smoothRotationTime:
-        value: 0.04
-  PlayerModelView:
-    _animator: {fileID: 695553863}
 --- !u!1001 &2026076435
 PrefabInstance:
   m_ObjectHideFlags: 0

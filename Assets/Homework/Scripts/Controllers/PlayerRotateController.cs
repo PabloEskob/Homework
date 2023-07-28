@@ -1,23 +1,48 @@
-﻿using Homework.Scripts.Input;
-using Homework.Scripts.Models;
+﻿using Homework.Scripts.Components;
+using Homework.Scripts.Entities;
+using Homework.Scripts.Input;
+using Homework.Scripts.Models.Player;
+using UnityEngine;
 using VContainer.Unity;
 
 namespace Homework.Scripts.Controllers
 {
-    public class PlayerRotateController : ITickable
+    public class PlayerRotateController : IStartable, ITickable
     {
         private readonly GameInput _gameInput;
-        private readonly PlayerModelMove _playerModelMove;
+        private ITurnComponent _turnComponent;
+        private readonly Entity _entity;
 
-        public PlayerRotateController(GameInput gameInput,PlayerModel playerModel)
+        public PlayerRotateController(GameInput gameInput, PlayerModel playerModel)
         {
+            _entity = playerModel.PlayerModelComponents.Entity;
             _gameInput = gameInput;
-            _playerModelMove = playerModel.PlayerModelCore.PlayerModelMove;
+        }
+
+        public void Start()
+        {
+            if (_entity.TryGet(out ITurnComponent turnComponent))
+            {
+                _turnComponent = turnComponent;
+            }
         }
         
         public void Tick()
         {
-            _playerModelMove.RotateEngine.Rotate(_gameInput.Axis);
+            if (_gameInput.PressRotateButton.IsPressed())
+            {
+                _turnComponent.MouseTurn();
+            }
+            else
+            {
+                if (_gameInput.Axis == Vector3.zero)
+                {
+                    return;
+                }
+
+                _turnComponent.Turn(_gameInput.Axis);
+            }
+           
         }
     }
 }

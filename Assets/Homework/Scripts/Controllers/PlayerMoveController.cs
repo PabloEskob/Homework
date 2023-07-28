@@ -1,24 +1,40 @@
-﻿using Homework.Scripts.Input;
-using Homework.Scripts.Models;
+﻿using Homework.Scripts.Components;
+using Homework.Scripts.Entities;
+using Homework.Scripts.Input;
+using Homework.Scripts.Models.Player;
 using UnityEngine;
 using VContainer.Unity;
 
 namespace Homework.Scripts.Controllers
 {
-    public class PlayerMoveController : IFixedTickable
+    public class PlayerMoveController : ITickable, IStartable
     {
         private readonly GameInput _gameInput;
-        private readonly PlayerModelMove _playerModelMove;
+        private IMoveComponent _moveComponent;
+        private readonly Entity _entity;
 
         public PlayerMoveController(GameInput gameInput, PlayerModel playerModel)
         {
-            _playerModelMove = playerModel.PlayerModelCore.PlayerModelMove;
+            _entity = playerModel.PlayerModelComponents.Entity;
             _gameInput = gameInput;
         }
 
-        public void FixedTick()
+        public void Start()
         {
-            _playerModelMove.MoveEngine.Move(direction: _gameInput.Axis * Time.fixedDeltaTime);
+            if (_entity.TryGet(out IMoveComponent moveComponent))
+            {
+                _moveComponent = moveComponent;
+            }
+        }
+
+        public void Tick()
+        {
+            if (_gameInput.Axis == Vector3.zero)
+            {
+                return;
+            }
+
+            _moveComponent.Move(_gameInput.Axis);
         }
     }
 }

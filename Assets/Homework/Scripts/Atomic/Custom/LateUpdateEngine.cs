@@ -7,7 +7,7 @@ namespace Atomic
     {
         private Action<float> _action;
 
-        public void OnUpdate(Action<float> update)
+        public void Do(Action<float> update)
         {
             _action = update;
         }
